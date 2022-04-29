@@ -15,9 +15,9 @@ public class MarkdownParse {
         while(currentIndex < markdown.length()) {
             int openBracket = markdown.indexOf("[", currentIndex);
             if(openBracket == -1){
-                // if(toReturn.size() == 0){
-                //     throw new StringIndexOutOfBoundsException();
-                // }
+                if(toReturn.size() == 0){
+                    throw new StringIndexOutOfBoundsException();
+                }
                 return toReturn;
             }
             int closeBracket = markdown.indexOf("]", openBracket);
@@ -30,13 +30,23 @@ public class MarkdownParse {
             //     toReturn.add(markdown.substring(openParen + 1, closeParen));
             //     currentIndex = closeParen + 1;  
             // }
-            for(int i = openBracket; i < closeBracket; i++) {
-                //int wrong = markdown.indexOf("(", closeBracket); wrong > -1 || 
-                int wrong2 = markdown.indexOf("[", currentIndex);
-                if (wrong2 > -1){
-                    System.out.println("Invalid link");
-                    return toReturn;
-                }
+            int count = 0;
+            // find index of close param ')' = val1
+            // find index of next '[' or '(' = val2
+            // if val2 < val1 => invalid link
+            int wrong = markdown.indexOf("(", openParen + 1); 
+            int wrong2 = markdown.indexOf("[", openParen + 1);
+            if ((wrong > -1 & wrong < closeParen) || (wrong2 > -1 & wrong2 < closeParen)){
+                count += 1;
+                
+            }
+            if(count > 0){
+                System.out.println("Invalid link");
+                return toReturn;
+            }
+            if(openBracket < 0 || openParen < 0) {
+                System.out.println("No link available");
+                return toReturn;
             }
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
