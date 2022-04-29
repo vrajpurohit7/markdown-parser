@@ -15,25 +15,25 @@ public class MarkdownParse {
         while(currentIndex < markdown.length()) {
             int openBracket = markdown.indexOf("[", currentIndex);
             if(openBracket == -1){
-                if(toReturn.size() == 0){
-                    throw new StringIndexOutOfBoundsException();
-                }
+                // if(toReturn.size() == 0){
+                //     throw new StringIndexOutOfBoundsException();
+                // }
                 return toReturn;
             }
             int closeBracket = markdown.indexOf("]", openBracket);
             int openParen = markdown.indexOf("(", closeBracket);
             int closeParen = markdown.indexOf(")", openParen);
-            if(markdown.substring(openParen + 1, closeParen).length() == 0){
-                currentIndex = closeParen + 1;
-            }
-            else{
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
-                currentIndex = closeParen + 1;  
-            }
+            // if(markdown.substring(openParen + 1, closeParen).length() == 0){
+            //     currentIndex = closeParen + 1;
+            // }
+            // else{
+            //     toReturn.add(markdown.substring(openParen + 1, closeParen));
+            //     currentIndex = closeParen + 1;  
+            // }
             for(int i = openBracket; i < closeBracket; i++) {
-                int wrong = markdown.indexOf("(", closeBracket);
+                //int wrong = markdown.indexOf("(", closeBracket); wrong > -1 || 
                 int wrong2 = markdown.indexOf("[", currentIndex);
-                if (wrong > -1 || wrong2 > -1){
+                if (wrong2 > -1){
                     System.out.println("Invalid link");
                     return toReturn;
                 }
