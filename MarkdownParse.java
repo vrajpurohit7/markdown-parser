@@ -15,8 +15,8 @@ public class MarkdownParse {
         while(currentIndex < markdown.length()) {
             int openBracket = markdown.indexOf("[", currentIndex);
             if(openBracket == -1){
-                if(toReturn.length == 0){
-                    thows new StringIndexOutOfBoundsException();
+                if(toReturn.size() == 0){
+                    throw new StringIndexOutOfBoundsException();
                 }
                 return toReturn;
             }
