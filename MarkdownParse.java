@@ -1,6 +1,7 @@
 //https://howtodoinjava.com/java/io/java-read-file-to-string-examples/
 
 //new comment
+// adding a new line
 
 import java.io.EOFException;
 import java.io.IOException;
